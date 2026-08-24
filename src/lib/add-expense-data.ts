@@ -1,6 +1,13 @@
 import { randomUUID } from "node:crypto";
 
-import type { ExpenseRow } from "../schemas/index.js";
+import {
+  addExpenseInputSchema,
+  type ExpenseRow,
+} from "../schemas/index.js";
+
+export function normalizeExpenseCategory(category: string): string {
+  return category.trim().toLowerCase();
+}
 
 export function createExpense(
   amount: number,
@@ -8,11 +15,18 @@ export function createExpense(
   date: string,
   description?: string,
 ): ExpenseRow {
+  const input = addExpenseInputSchema.parse({
+    amount,
+    category,
+    date,
+    description,
+  });
+
   return {
     id: randomUUID(),
-    amount,
-    category: category.toLowerCase(),
-    date,
-    description: description ?? "",
+    amount: input.amount,
+    category: normalizeExpenseCategory(input.category),
+    date: input.date,
+    description: input.description ?? "",
   };
 }

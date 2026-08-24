@@ -6,11 +6,13 @@ Personal Expense Tracker MCP is a simple local MCP server for tracking personal 
 
 It stores expense data in a local CSV file
 
-The server gives an MCP client three main tools
+The server gives an MCP client five focused tools
 
 - add a new expense
 - list saved expenses
 - create a spending summary
+- update an existing expense
+- delete an existing expense
 
 The project is made to be simple and easy to run locally
 
@@ -134,6 +136,8 @@ In Inspector
 | `add_expense` | adds a new expense to the CSV file | amount category date description |
 | `list_expenses` | lists saved expenses and can filter them | month category |
 | `get_spending_summary` | calculates spending totals for a month | month |
+| `update_expense` | updates one existing expense | id and at least one expense field |
+| `delete_expense` | deletes one existing expense | id |
 
 ---
 
@@ -481,9 +485,8 @@ Personal-Expenses-Tracker/
 │   └── expenses.csv
 │
 ├── docs/
-│   ├── test-plan.md
-│   └── evidence/
-│       └── evidence.pdf
+│   ├── design.md
+│   └── threat-model.md
 │
 ├── examples/
 │
@@ -512,31 +515,13 @@ Errors returned to the MCP client are kept short
 
 More detailed errors stay in the local terminal for debugging
 
-The three P0 tools do not require external network requests
+The expense tools do not require external network requests
 
 More security information is available in
 
 ```text
 SECURITY.md
 ```
-
----
-
-## Manual Test Evidence
-
-The Week 5 manual test plan is available in
-
-```text
-docs/test-plan.md
-```
-
-The test evidence is available in
-
-```text
-docs/evidence/evidence.pdf
-```
-
-All manual test cases were executed using MCP Inspector
 
 ---
 
@@ -559,6 +544,7 @@ The main goal is to provide simple MCP tools for local expense tracking
 
 ## License
 
-No open source license has been added to this project yet
+This project uses the MIT License
 
-This project was created for educational and internship work
+See [LICENSE](LICENSE)
+

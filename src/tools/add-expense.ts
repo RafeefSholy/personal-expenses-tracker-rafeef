@@ -2,14 +2,21 @@ import type { McpServer } from "@modelcontextprotocol/server";
 
 import { createExpense } from "../lib/add-expense-data.js";
 import { appendExpense } from "../lib/expenses-file.js";
-import { addExpenseInputSchema } from "../schemas/index.js";
+import { createAddExpenseInputSchema } from "../schemas/index.js";
 
 export function registerAddExpenseTool(server: McpServer): void {
+  const inputSchema = createAddExpenseInputSchema();
+
   server.registerTool(
     "add_expense",
     {
       description: "add a new expense",
-      inputSchema: addExpenseInputSchema,
+      inputSchema,
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        openWorldHint: false,
+      },
     },
     async ({ amount, category, date, description }) => {
       try {

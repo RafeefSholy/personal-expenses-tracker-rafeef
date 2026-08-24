@@ -1,19 +1,25 @@
 import type { McpServer } from "@modelcontextprotocol/server";
 import { readExpenses } from "../lib/expenses-file.js";
 import { calculateSpendingSummary } from "../lib/spending-summary-data.js";
-import {
-  getSpendingSummaryInputSchema,
-  getSpendingSummaryOutputSchema,
-} from "../schemas/index.js";
+
+import { createGetSpendingSummaryInputSchema } from "../schemas/index.js";
+
 
 export function registerGetSpendingSummaryTool(
   server: McpServer,
 ): void {
+  const inputSchema = createGetSpendingSummaryInputSchema();
+
   server.registerTool(
     "get_spending_summary",
     {
       description: "get a spending summary",
-      inputSchema: getSpendingSummaryInputSchema,
+      inputSchema,
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        openWorldHint: false,
+      },
     },
     async ({ month }) => {
       try {
