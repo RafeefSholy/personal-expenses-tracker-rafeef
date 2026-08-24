@@ -133,6 +133,29 @@ export const listExpensesInputSchema = createListExpensesInputSchema();
 export const getSpendingSummaryInputSchema =
   createGetSpendingSummaryInputSchema();
 
+export const getSpendingSummaryOutputSchema = z.object({
+  month: z.union([
+    z.literal("all"),
+    z.string().regex(
+      /^\d{4}-(0[1-9]|1[0-2])$/,
+      "Month must use YYYY-MM format",
+    ),
+  ]),
+
+  totalAmount: z.number().nonnegative(),
+
+  expenseCount: z.number().int().nonnegative(),
+
+  categoryTotals: z.record(
+    z.string(),
+    z.number().nonnegative(),
+  ),
+
+  message: z.enum([
+    "no matching expenses found",
+    "spending summary created",
+  ]),
+});
 //csv row validation schema 
 //This checks that every expense loaded from the CSV has:
 //id amount category date description

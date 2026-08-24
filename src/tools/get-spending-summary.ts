@@ -1,7 +1,9 @@
 import type { McpServer } from "@modelcontextprotocol/server";
 import { readExpenses } from "../lib/expenses-file.js";
 import { calculateSpendingSummary } from "../lib/spending-summary-data.js";
+
 import { createGetSpendingSummaryInputSchema } from "../schemas/index.js";
+
 
 export function registerGetSpendingSummaryTool(
   server: McpServer,
@@ -42,11 +44,14 @@ export function registerGetSpendingSummaryTool(
               : "spending summary created",
         };
 
+        const validatedResult =
+          getSpendingSummaryOutputSchema.parse(result);
+
         return {
           content: [
             {
               type: "text",
-              text: JSON.stringify(result, null, 2),
+              text: JSON.stringify(validatedResult, null, 2),
             },
           ],
         };
