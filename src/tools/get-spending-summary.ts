@@ -2,7 +2,10 @@ import type { McpServer } from "@modelcontextprotocol/server";
 import { readExpenses } from "../lib/expenses-file.js";
 import { calculateSpendingSummary } from "../lib/spending-summary-data.js";
 
-import { createGetSpendingSummaryInputSchema } from "../schemas/index.js";
+import {
+  createGetSpendingSummaryInputSchema,
+  getSpendingSummaryOutputSchema,
+} from "../schemas/index.js";
 
 
 export function registerGetSpendingSummaryTool(
