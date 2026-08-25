@@ -183,6 +183,10 @@ This uses the local expense data and demonstrates the spending-summary functiona
 
 ---
 
+(https://github.com/RafeefSholy/personal-expenses-tracker-rafeef/blob/bf06d656c171548cbc06b0fe5fc13dfb084f581c/docs/rafeef_personal_expense_tracker_demo.pdf
+
+https://github.com/RafeefSholy/personal-expenses-tracker-rafeef/blob/bf06d656c171548cbc06b0fe5fc13dfb084f581c/docs/rafeef_personal_expense_tracker_demo.pptx)
+
 ## Demo Checklist
 
 - Project builds successfully.
