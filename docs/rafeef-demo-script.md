@@ -182,6 +182,10 @@ with:
 This uses the local expense data and demonstrates the spending-summary functionality without requiring an external database.
 
 ---
+docs/rafeef_personal_expense_tracker_demo_v2.pdf
+
+docs/rafeef_personal_expense_tracker_demo_v2.pptx
+
 
 ## Demo Checklist
 
